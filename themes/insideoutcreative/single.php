@@ -22,7 +22,7 @@ echo '<h3 class="h5">' . get_previous_post_link() . '</h3>';
 echo '</div>';
 echo '<div class="col-md-6 text-right" id="next">';
 echo '<small>Next</small>';
-echo '<h3 class="h5">' . next_post_link() . '</h3>';
+echo '<h3 class="h5">' . get_next_post_link() . '</h3>';
 echo '</div>';
 echo '</div>';
 echo '</div>';
