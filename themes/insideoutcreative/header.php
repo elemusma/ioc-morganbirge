@@ -128,7 +128,7 @@ echo '</header>';
 
 
 
-if(!is_page() && !is_front_page()){
+if(!is_page() && !is_front_page() && !is_single()){
 echo '<section class="hero position-relative">';
 $globalPlaceholderImg = get_field('global_placeholder_image','options');
 if(is_page()){
@@ -150,7 +150,7 @@ echo '<div class="col-md-12">';
 
 echo '<h1 class="">' . get_the_title() . '</h1>';
 if(is_single()){
-echo '<h1 class="">' . get_single_post_title() . '</h1>';
+echo '<h1 class="">' . single_post_title() . '</h1>';
 } elseif(is_author()){
 echo '<h1 class="">Author: ' . get_the_author() . '</h1>';
 } elseif(is_tag()){
