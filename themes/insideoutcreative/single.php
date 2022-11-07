@@ -1,31 +1,30 @@
-<?php get_header(); ?>
-<section class="pt-5 pb-5 body">
-<div class="container">
-    <div class="row justify-content-center">
-    <?php get_template_part('partials/sidebar'); ?>
-        <div class="col-lg-9 col-md-12 order-lg-2 order-1">
-        <p class="mb-0"><?php echo get_the_author_posts_link(); ?></p>
-        <p><?php the_time('F jS, Y'); ?></p>
-        <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
+<?php get_header();
+echo '<section class="pt-5 pb-5 body">';
+echo '<div class="container">';
+echo '<div class="row justify-content-center">';
+get_template_part('partials/sidebar');
+echo '<div class="col-lg-9 col-md-12 order-lg-2 order-1">';
+echo '<p class="mb-0">' . get_the_author_posts_link() . '</p>';
+echo '<p>' . get_the_time('F jS, Y') . '</p>';
+if ( have_posts() ) : while ( have_posts() ) : the_post();
 the_content();
-endwhile; else: ?>
-<p>Sorry, no posts matched your criteria.</p>
-<?php endif; ?>
-        </div>
-        <!-- <div class="col-lg-3"> -->
-            
-        <!-- </div> -->
-    </div>
-    <div class="row justify-content-center pt-5">
-        <div class="col-md-6" id="previous">
-        <small>Previous</small>
-        <h3 class="h5"><?php previous_post_link(); ?></h3>
-        </div>
-        <div class="col-md-6 text-right" id="next">
-            <small>Next</small>
-        <h3 class="h5"><?php next_post_link(); ?></h3>
-        </div>
-    </div>
-</div>
-</section>
-<?php get_footer(); ?>
+endwhile; else:
+echo '<p>Sorry, no posts matched your criteria.</p>';
+endif;
+echo '</div>';
+// <div class="col-lg-3">
+// </div>
+echo '</div>';
+echo '<div class="row justify-content-center pt-5">';
+echo '<div class="col-md-6" id="previous">';
+echo '<small>Previous</small>';
+echo '<h3 class="h5">' . get_previous_post_link() . '</h3>';
+echo '</div>';
+echo '<div class="col-md-6 text-right" id="next">';
+echo '<small>Next</small>';
+echo '<h3 class="h5">' . next_post_link() . '</h3>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</section>';
+get_footer(); ?>
