@@ -10,7 +10,7 @@ if (!class_exists('MCInfo')) :
 		public $badgeinfo = 'mcbadge';
 		public $ip_header_option = 'mcipheader';
 		public $brand_option = 'mcbrand';
-		public $version = '4.67';
+		public $version = '4.82';
 		public $webpage = 'https://www.malcare.com';
 		public $appurl = 'https://app.malcare.com';
 		public $slug = 'malcare-security/malcare.php';
@@ -66,7 +66,7 @@ if (!class_exists('MCInfo')) :
 
 		public function getBrandName() {
 			$brand = $this->getBrandInfo();
-			if ($brand && array_key_exists('menuname', $brand)) {
+			if (is_array($brand) && array_key_exists('menuname', $brand)) {
 				return $brand['menuname'];
 			}
 		  $bvinfo = new MCInfo($this->settings);
@@ -79,7 +79,7 @@ if ($bvinfo->canSetCWBranding()) {
 
 		public function getBrandIcon() {
 			$brand = $this->getBrandInfo();
-			if ($brand && array_key_exists('brand_icon', $brand)) {
+			if (is_array($brand) && array_key_exists('brand_icon', $brand)) {
 				return $brand['brand_icon'];
 			}
 			return $this->brand_icon;
@@ -95,7 +95,7 @@ if ($bvinfo->canSetCWBranding()) {
 				return BV_APP_URL;
 			} else {
 				$brand = $this->getBrandInfo();
-				if ($brand && array_key_exists('appurl', $brand)) {
+				if (is_array($brand) && array_key_exists('appurl', $brand)) {
 					return $brand['appurl'];
 				}
 				return $this->appurl;
@@ -107,8 +107,19 @@ if ($bvinfo->canSetCWBranding()) {
 			return ($this->getWatchTime() > $expiry_time);
 		}
 
+		public function isValidEnvironment(){
+			$bvsiteinfo = new MCWPSiteInfo();
+			$siteurl = $bvsiteinfo->siteurl();
+			$bvconfig = $this->config;
+			if ($bvconfig && array_key_exists("abspath", $bvconfig) &&
+					array_key_exists("siteurl", $bvconfig) && !empty($siteurl)) {
+				return ($bvconfig["abspath"] == ABSPATH && $bvconfig["siteurl"] == $siteurl);
+			}
+			return true;
+		}
+
 		public function isProtectModuleEnabled() {
-			return $this->isServiceActive("protect");
+			return $this->isServiceActive("protect") && $this->isValidEnvironment();
 		}
 
 		public function isDynSyncModuleEnabled() {
@@ -134,7 +145,7 @@ if ($bvinfo->canSetCWBranding()) {
 		}
 
 		public function isMalcare() {
-			return $this->getBrandName() === 'MalCare - Pro';
+			return $this->getBrandName() === 'MalCare';
 		}
 
 		public function isBlogvault() {

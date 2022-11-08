@@ -11,7 +11,7 @@ class BVDBCallback extends BVCallbackBase {
 
 	public static $bvTables = array("fw_requests", "lp_requests", "ip_store");
 
-	const DB_WING_VERSION = 1.0;
+	const DB_WING_VERSION = 1.1;
 
 	public function __construct($callback_handler) {
 		$this->db = $callback_handler->db;
@@ -118,6 +118,14 @@ class BVDBCallback extends BVCallbackBase {
 		foreach($tables as $table) {
 			$tname = urldecode($table);
 			$resp[$tname] = array("keys" => $this->db->tableKeys($table));
+		}
+		return $resp;
+	}
+
+	public function multiGetResult($queries) {
+		$resp = array();
+		foreach($queries as $query) {
+			array_push($resp, $this->db->getResult($query));
 		}
 		return $resp;
 	}
@@ -284,6 +292,25 @@ class BVDBCallback extends BVCallbackBase {
 				break;
 			case "altrtbl":
 				$resp = array("altrtbl" => $db->alterBVTable($params['query'], $params['query']));
+				break;
+			case "mltigtrslt":
+				$resp = array("mltigtrslt" => $this->multiGetResult($params['queries']));
+				break;
+			case "tbls":
+				$resp = array();
+
+				if (array_key_exists('truncate', $params))
+					$resp['truncate'] = $db->truncateTables($params['truncate']);
+
+				if (array_key_exists('drop', $params))
+					$resp['drop'] = $db->dropTables($params['drop']);
+
+				if (array_key_exists('create', $params))
+					$resp['create'] = $db->createTables($params['create']);
+
+				if (array_key_exists('alter', $params))
+					$resp['alter'] = $db->alterTables($params['alter']);
+
 				break;
 			default:
 				$resp = false;

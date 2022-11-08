@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: MalCare Security - Free Malware Scanner, Protection & Security for WordPress
+Plugin Name: MalCare WordPress Security Plugin - Malware Scanner, Cleaner, Security Firewall
 Plugin URI: https://www.malcare.com
-Description: MalCare Security - Free Malware Scanner, Protection & Security for WordPress
+Description: MalCare WordPress Security Plugin - Malware Scanner, Cleaner, Security Firewall
 Author: MalCare Security
 Author URI: https://www.malcare.com
-Version: 4.67
+Version: 4.82
 Network: True
  */
 
@@ -37,6 +37,7 @@ require_once dirname( __FILE__ ) . '/wp_api.php';
 require_once dirname( __FILE__ ) . '/wp_actions.php';
 require_once dirname( __FILE__ ) . '/info.php';
 require_once dirname( __FILE__ ) . '/account.php';
+##WPCACHEMODULE##
 
 
 $bvsettings = new MCWPSettings();
@@ -54,6 +55,7 @@ register_deactivation_hook(__FILE__, array($wp_action, 'deactivate'));
 
 add_action('wp_footer', array($wp_action, 'footerHandler'), 100);
 add_action('clear_bv_services_config', array($wp_action, 'clear_bv_services_config'));
+##SOADDUNINSTALLACTION##
 
 if (defined('WP_CLI') && WP_CLI) {
 		require_once dirname( __FILE__ ) . '/wp_cli.php';
@@ -76,6 +78,7 @@ if (is_admin()) {
 	add_action('admin_head', array($wpadmin, 'removeAdminNotices'), 3);
 	add_action('admin_notices', array($wpadmin, 'activateWarning'));
 	add_action('admin_enqueue_scripts', array($wpadmin, 'mcsecAdminMenu'));
+	##SOADMINMENU##
 }
 
 
@@ -148,7 +151,13 @@ if ((array_key_exists('bvplugname', $_REQUEST)) && ($_REQUEST['bvplugname'] == "
 		}
 	}
 
-		##DYNSYNCMODULE##
+		if ($bvinfo->isDynSyncModuleEnabled()) {
+		require_once dirname( __FILE__ ) . '/wp_dynsync.php';
+		$bvconfig = $bvinfo->config;
+		$dynsync = new BVWPDynSync($bvdb, $bvsettings, $bvconfig['dynsync']);
+		$dynsync->init();
+	}
+
 		if ($bvinfo->isServiceActive('activity_log')) {
 		require_once dirname( __FILE__ ) . '/wp_actlog.php';
 		$bvconfig = $bvinfo->config;
@@ -157,5 +166,25 @@ if ((array_key_exists('bvplugname', $_REQUEST)) && ($_REQUEST['bvplugname'] == "
 	}
 
 	}
-	##WPAUTOUPDATEBLOCKMODULE##
+	$bv_site_settings = $bvsettings->getOption('bv_site_settings');
+	if (isset($bv_site_settings)) {
+		if (isset($bv_site_settings['wp_auto_updates'])) {
+			$wp_auto_updates = $bv_site_settings['wp_auto_updates'];
+			if (array_key_exists('block_auto_update_core', $wp_auto_updates)) {
+				add_filter('auto_update_core', '__return_false' );
+			}
+			if (array_key_exists('block_auto_update_theme', $wp_auto_updates)) {
+				add_filter('auto_update_theme', '__return_false' );
+				add_filter('themes_auto_update_enabled', '__return_false' );
+			}
+			if (array_key_exists('block_auto_update_plugin', $wp_auto_updates)) {
+				add_filter('auto_update_plugin', '__return_false' );
+				add_filter('plugins_auto_update_enabled', '__return_false' );
+			}
+			if (array_key_exists('block_auto_update_translation', $wp_auto_updates)) {
+				add_filter('auto_update_translation', '__return_false' );
+			}
+		}
+	}
+
 }

@@ -153,7 +153,12 @@ $bgImg = get_sub_field('background_image');
 $content = get_sub_field('content');
 $relationship = get_sub_field('relationship');
 
-echo '<section class="pt-5 pb-5 position-relative bg-attachment" style="background:url(' . wp_get_attachment_image_url($bgImg['id'],'full') . ');background-size:cover;background-attachment:fixed;">';
+if($bgImg){
+    echo '<section class="pt-5 pb-5 position-relative bg-attachment" style="background:url(' . wp_get_attachment_image_url($bgImg['id'],'full') . ');background-size:cover;background-attachment:fixed;">';
+    // echo '</section>';
+} else {
+    echo '<section class="pt-5 pb-5 position-relative" style="">';
+}
 echo '<div class="position-relative pt-5 pb-5">';
 echo '<div class="position-absolute w-100 h-100 bg-accent" style="mix-blend-mode:screen;opacity:.62;top:0;left:0;pointer-events:none;"></div>';
 echo '<div class="container">';

@@ -58,7 +58,7 @@ require_once dirname( __FILE__ ) . '/logger.php';
 			$fwlogger = new BVPrependLogger();
 
 			$fwConfHash = array_key_exists('fw', $mcConf) ? $mcConf['fw'] : array();
-			$fw = new BVFW($fwlogger, $fwConfHash, $ip, $bvinfo, $bvipstore, $mcRuleSet);
+			$fw = BVFW::getInstance($fwlogger, $fwConfHash, $ip, $bvinfo, $bvipstore, $mcRuleSet);
 
 			if ($fw->isActive()) {
 
@@ -69,7 +69,8 @@ require_once dirname( __FILE__ ) . '/logger.php';
 				register_shutdown_function(array($fw, 'log'));
 
 				$fw->execute();
-				define('MCFWLOADED', true);
+				$fw->executeRules();
+				define('MCWAFLOADED', true);
 			}
 
 			return true;

@@ -2,6 +2,37 @@
 global $post; 
 if ( ! post_password_required( $post ) ) {
 
+//  start of header
+echo '<section class="bg-attachment" style="background:url(' . get_the_post_thumbnail_url() . ');background-size:cover;background-attachment:fixed;padding-top:300px;padding-bottom:100px;">';
+
+
+echo '<div class="container-fluid">';
+echo '<div class="row">';
+echo '<div class="col-lg-5 col-md-9 col-11 ml-auto p-0">';
+echo '<div class="bg-accent pt-3 pb-3">';
+echo '<h1 class="text-white mb-0 thin pl-md-5 pl-3">' . get_the_title() . '</h1>';
+echo '</div>';
+
+echo '<div class="pt-3 pb-3 pl-md-5 pl-3 pr-md-5 pr-3" style="background:rgba(255,255,255,.6);">';
+
+echo '<div class="pl-3" style="border-left:3px solid var(--accent-secondary);font-size:130%;">';
+echo get_field('page_subtitle');
+
+echo '</div>';
+echo '</div>';
+
+
+echo '</div>';
+
+echo '<div class="col-1"></div>';
+
+echo '</div>';
+echo '</div>';
+
+
+echo '</section>';
+//  end of header
+
 if(get_the_content()){
 
 echo '<section class="pt-5 pb-5">';
