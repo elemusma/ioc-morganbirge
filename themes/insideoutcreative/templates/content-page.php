@@ -120,7 +120,7 @@ if($options == 'Testimonials'){
 // start of content section with icon
 elseif($options == 'Content Section with Icon') {
 if(have_rows('content_section_with_icon')): while(have_rows('content_section_with_icon')): the_row();
-    echo '<section class="pt-5 pb-5">';
+    echo '<section class="position-relative ' . get_sub_field('classes') . '" style="padding:100px 0;' . get_sub_field('style') . '">';
     echo '<div class="container">';
     echo '<div class="row justify-content-center">';
     echo '<div class="col-md-9 text-center">';
@@ -140,6 +140,47 @@ if(have_rows('content_section_with_icon')): while(have_rows('content_section_wit
 endwhile; endif;
 }
 // end of content section with icon
+
+// start of columns with icon
+elseif($options == 'Columns with Icons'){
+  if(have_rows('columns_with_icon')): while(have_rows('columns_with_icon')): the_row();
+  echo '<section class="position-relative ' . get_sub_field('classes') . '" style="padding:100px 0;' . get_sub_field('style') . '">';
+  echo '<div class="container">';
+  echo '<div class="row pb-5">';
+
+  echo '<div class="col-12 d-flex align-items-center text-center">';
+  echo '<div class="w-100" style="border-top:2px groove gray;"></div>';
+  echo '<h2 class="pl-3 pr-3 mb-0" style="white-space:nowrap;">' . get_sub_field('title') . '</h2>';
+  echo '<div class="w-100" style="border-top:2px groove gray;"></div>';
+  echo '</div>';
+
+  echo '</div>';
+  
+  if(have_rows('columns')):
+  echo '<div class="row justify-content-center">';
+    while(have_rows('columns')): the_row();
+      echo '<div class="col-lg-4 col-md-6 text-center mb-5 ' . get_sub_field('classes') . '" style="' . get_sub_field('style') . '">';
+
+      echo '<div class="bg-accent p-3 m-auto" style="width:60px;height:60px;border-radius:50%;">';
+      echo get_sub_field('icon');
+      echo '</div>';
+
+      echo '<div class="pt-4">';
+      echo '<span class="h4">' . get_sub_field('title') . '</span>';
+      echo '<span class="d-block text-gray">' . get_sub_field('description') . '</span>';
+      echo '</div>';
+
+      echo '</div>  ';
+    endwhile;
+  echo '</div>';
+  endif;
+
+
+  echo '</div>';
+  echo '</section>';
+  endwhile; endif;
+}
+// end of columns with icon
 
 // start of case study
 elseif($options == 'Case Study') {
@@ -213,6 +254,51 @@ echo '</section>';
 endwhile; endif;
 }
 // end of case study
+
+// start of cta section
+elseif($options == 'CTA Section') {
+  if(have_rows('cta_section')): while(have_rows('cta_section')): the_row();
+
+    echo '<section class="position-relative bg-accent text-white" style="">';
+
+    echo '<div class="container">';
+    echo '<div class="row">';
+
+    echo '<div class="col-lg-7">';
+
+    echo '<div class="d-flex align-items-center h-100">';
+    echo '<div>';
+    echo '<h2>' . get_sub_field('title') . '</h2>';
+    echo get_sub_field('content');
+    echo '</div>';
+    echo '</div>';
+
+    echo '</div>';
+
+    echo '<div class="col-lg-5">';
+
+    $img = get_sub_field('image');
+
+    echo wp_get_attachment_image($img['id'],'full','',['class'=>'w-100 h-auto']);
+
+    $link = get_sub_field('link');
+    if( $link ): 
+    $link_url = $link['url'];
+    $link_title = $link['title'];
+    $link_target = $link['target'] ? $link['target'] : '_self';
+    echo '<a class="position-absolute w-100 h-100" style="top:0;left:0;" href="' . esc_url( $link_url ) . '" target="' . esc_attr( $link_target ) . '">' . esc_html( $link_title ) . '</a>';
+    endif;
+
+    echo '</div>';
+
+    echo '</div>';
+    echo '</div>';
+
+    echo '</section>';
+
+  endwhile; endif;
+}
+// end of cta section
 
 endwhile; endif;
 
