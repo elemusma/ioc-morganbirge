@@ -27,9 +27,15 @@ ul.menu>li.menu-item-has-children {
     }
 }
 
-ul.menu>li>a {
+#menu-contact>li>a {
     padding: 0px 0;
     font-size: 26px;
+    line-height: 1;
+}
+
+ul.menu>li>a {
+    padding: 0px 9px;
+    font-size: 16px;
     line-height: 1;
 }
 
@@ -237,7 +243,7 @@ div#navItems.activate {
     ul.sub-menu {
         padding: 0 20px;
         position: absolute;
-        background: #e1c95f;
+        background: white;
         z-index: 10;
         height: 0;
         overflow: hidden;

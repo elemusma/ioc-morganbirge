@@ -17,10 +17,12 @@ echo '</div>';
 
 echo '<div class="pt-3 pb-3 pl-md-5 pl-3 pr-md-5 pr-3" style="background:rgba(255,255,255,.6);">';
 
+if(get_field('page_subtitle')):
 echo '<div class="pl-3" style="border-left:3px solid var(--accent-secondary);font-size:130%;">';
 echo get_field('page_subtitle');
-
 echo '</div>';
+endif;
+
 echo '</div>';
 
 
@@ -311,6 +313,10 @@ elseif($options == 'CTA Section') {
 // end of cta section
 
 endwhile; endif;
+
+if(get_field('show_contact_section') == 'Yes'){
+  echo get_template_part('partials/section-contact');
+}
 
 get_footer();
 ?>

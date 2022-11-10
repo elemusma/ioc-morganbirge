@@ -19,40 +19,50 @@ if(get_field('custom_css')) {
 <?php if(get_field('body','options')) { the_field('body','options'); } 
 
 if(!is_front_page()){
-?>
-<div class="blank-space"></div>
-<header class="position-relative pt-3 pb-3 z-3 box-shadow bg-white w-100" style="top:0;left:0;">
 
-<div class="nav">
-<div class="container-fluid">
-<div class="row align-items-center justify-content-md-center justify-content-end">
+echo '<div class="blank-space"></div>';
+echo '<header class="position-relative pt-3 pb-3 z-3 box-shadow bg-white w-100" style="top:0;left:0;">';
 
-<div class="col-lg-4 col-3">
-<!-- <div class="d-none">     -->
-    <a id="navToggle" class="nav-toggle">
-        <div>
-            <div class="line-1 bg-accent"></div>
-            <div class="line-2 bg-accent"></div>
-            <div class="line-3 bg-accent"></div>
-        </div>
-    </a>
-<!-- </div> -->
-</div>
+echo '<div class="nav">';
+echo '<div class="container-fluid">';
+echo '<div class="row align-items-center justify-content-md-center justify-content-end">';
 
-<div class="col-lg-4 col-3 text-center">
-<a href="<?php echo home_url(); ?>">
-<?php 
+echo '<div class="col-lg-4 col-3 desktop-hidden">';
+
+echo '<a id="navToggle" class="nav-toggle">';
+echo '<div>';
+echo '<div class="line-1 bg-accent"></div>';
+echo '<div class="line-2 bg-accent"></div>';
+echo '<div class="line-3 bg-accent"></div>';
+echo '</div>';
+echo '</a>';
+
+echo '</div>';
+
+echo '<div class="col-lg-2 col-3">';
+echo '<a href="' . home_url() . '">';
+
 $logo = get_field('logo','options'); 
 if($logo){
 echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'w-100 h-auto','style'=>'max-width:100px;']); 
 }
-?>
-</a>
-</div>
 
-<div class="col-4">
+echo '</a>';
+echo '</div>';
 
-<?php 
+echo '<div class="col-8">';
+
+
+wp_nav_menu(array(
+    'menu' => 'Primary',
+    'menu_class'=>'menu d-flex flex-wrap list-unstyled justify-content-between mb-0'
+));
+
+
+echo '</div>';
+echo '<div class="col-2">';
+
+
 wp_nav_menu(array(
     'menu' => 'Contact',
     'menu_class'=>'menu d-flex flex-wrap list-unstyled justify-content-end mb-0'
@@ -148,17 +158,22 @@ echo '<div class="container pt-5 pb-5 text-white text-center">';
 echo '<div class="row">';
 echo '<div class="col-md-12">';
 
+if(is_page() && !is_front_page()){
 echo '<h1 class="">' . get_the_title() . '</h1>';
-if(is_single()){
-echo '<h1 class="">' . single_post_title() . '</h1>';
+} elseif(is_single()){
+echo '<h1 class="single-title">' . single_post_title() . '</h1>';
 } elseif(is_author()){
-echo '<h1 class="">Author: ' . get_the_author() . '</h1>';
+echo '<h1 class="author-title">Author: ' . get_the_author() . '</h1>';
 } elseif(is_tag()){
-echo '<h1 class="">' . get_single_tag_title() . '</h1>';
+echo '<h1 class="tag-title">' . get_single_tag_title() . '</h1>';
 } elseif(is_category()){
-echo '<h1 class="">' . get_single_cat_title() . '</h1>';
+echo '<h1 class="category-title">' . get_single_cat_title() . '</h1>';
 } elseif(is_archive()){
-echo '<h1 class="">' . get_archive_title() . '</h1>';
+echo '<h1 class="archive-title">' . get_archive_title() . '</h1>';
+} 
+elseif(!is_front_page() && is_home()){
+echo '<h1 class="text-shadow">The Morgan Birgé Blog</h1>';
+echo '<h2 class="text-shadow">Welcome to our little corner of the Internet. Kick your feet up and stay a while.</h2>';
 }
 echo '</div>';
 echo '</div>';

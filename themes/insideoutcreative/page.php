@@ -51,6 +51,10 @@ echo '</section>';
 
 }
 
+if(get_field('show_contact_section') == 'Yes'){
+    echo get_template_part('partials/section-contact');
+  }
+
 } else {
 // we will show password form here
 

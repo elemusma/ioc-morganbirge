@@ -20,10 +20,12 @@ echo '</div>';
 if(have_rows('header_content')): while(have_rows('header_content')): the_row();
 echo '<div class="pt-3 pb-3 pl-md-5 pl-3 pr-md-5 pr-3" style="background:rgba(255,255,255,.6);">';
 
+if(get_sub_field('page_subtitle')):
 echo '<div class="pl-3" style="border-left:3px solid var(--accent-secondary);font-size:130%;">';
 echo get_sub_field('subtitle');
-
 echo '</div>';
+endif;
+
 echo '</div>';
 endwhile; endif;
 
@@ -233,6 +235,8 @@ echo '</div>';
 echo '</section>';
 endwhile; endif;
 // end of services
+
+echo get_template_part('partials/section-contact');
 
  get_footer();
 
