@@ -14,3 +14,7 @@
 .row-case-study-list .col:nth-last-child(2) .case-study-dashed-line {
     display: none !important;
 }
+
+.icon-col svg {
+    fill: white;
+}

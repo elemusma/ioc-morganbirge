@@ -125,13 +125,15 @@ if(have_rows('content_section_with_icon')): while(have_rows('content_section_wit
     echo '<div class="row justify-content-center">';
     echo '<div class="col-md-9 text-center">';
 
-    echo '<div class="bg-accent p-3 m-auto" style="width:60px;height:60px;border-radius:50%;">';
+    if(get_sub_field('icon')):
+    echo '<div class="bg-accent p-3 m-auto icon-col" style="width:60px;height:60px;border-radius:50%;">';
     echo get_sub_field('icon');
     echo '</div>';
-
     echo '<div class="mt-4">';
-    echo get_sub_field('content');
     echo '</div>';
+    endif;
+
+    echo get_sub_field('content');
 
     echo '</div>';
     echo '</div>';
@@ -161,13 +163,17 @@ elseif($options == 'Columns with Icons'){
     while(have_rows('columns')): the_row();
       echo '<div class="col-lg-4 col-md-6 text-center mb-5 ' . get_sub_field('classes') . '" style="' . get_sub_field('style') . '">';
 
-      echo '<div class="bg-accent p-3 m-auto" style="width:60px;height:60px;border-radius:50%;">';
+      if(get_sub_field('icon')):
+      echo '<div class="bg-accent p-3 m-auto icon-col" style="width:60px;height:60px;border-radius:50%;">';
       echo get_sub_field('icon');
       echo '</div>';
+      endif;
 
       echo '<div class="pt-4">';
-      echo '<span class="h4">' . get_sub_field('title') . '</span>';
-      echo '<span class="d-block text-gray">' . get_sub_field('description') . '</span>';
+      if(get_sub_field('title')):
+        echo '<span class="h4">' . get_sub_field('title') . '</span>';
+      endif;
+      echo '<div class="d-block text-gray">' . get_sub_field('description') . '</div>';
       echo '</div>';
 
       echo '</div>  ';
@@ -264,7 +270,7 @@ elseif($options == 'CTA Section') {
     echo '<div class="container">';
     echo '<div class="row">';
 
-    echo '<div class="col-lg-7">';
+    echo '<div class="col-lg-7 pt-5 pb-5">';
 
     echo '<div class="d-flex align-items-center h-100">';
     echo '<div>';
@@ -279,7 +285,11 @@ elseif($options == 'CTA Section') {
 
     $img = get_sub_field('image');
 
+    echo '<div class="d-flex align-items-center h-100">';
+    echo '<div>';
     echo wp_get_attachment_image($img['id'],'full','',['class'=>'w-100 h-auto']);
+    echo '</div>';
+    echo '</div>';
 
     $link = get_sub_field('link');
     if( $link ): 
