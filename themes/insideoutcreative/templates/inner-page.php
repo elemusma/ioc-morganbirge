@@ -236,7 +236,9 @@ echo '</section>';
 endwhile; endif;
 // end of services
 
-echo get_template_part('partials/section-contact');
+if(get_field('show_contact_section') == 'Yes'){
+    echo get_template_part('partials/section-contact');
+}
 
  get_footer();
 

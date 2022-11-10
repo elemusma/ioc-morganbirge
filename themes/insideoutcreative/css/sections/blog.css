@@ -58,16 +58,17 @@ span.page-numbers.current {
   margin: 0 5px 10px !important;
 }
 
-a.page-numbers {
+.page-numbers {
   background: var(--accent-primary) !important;
   border: 2px solid var(--accent-primary);
   padding: 10px 20px !important;
   color: white !important;
   margin: 0 5px 10px !important;
   display: inline-block;
+  transition: all .25s ease-in-out;
 }
 
-a.page-numbers:hover {
+.page-numbers:hover {
   color: var(--accent-primary) !important;
   background: white !important;
 }

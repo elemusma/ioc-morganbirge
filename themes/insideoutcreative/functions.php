@@ -24,7 +24,7 @@ if( is_page_template('templates/content-page.php' ) ){
 if( is_page_template('templates/inner-page.php' ) ){
 	wp_enqueue_style('inner-page', get_theme_file_uri('/css/sections/inner-page.css'));
 }
-if(is_single() || is_page_template('templates/blog.php') || is_archive() || is_category() || is_tag() || is_404() ) {
+if(is_single() || is_page_template('templates/blog.php') || is_archive() || is_category() || is_tag() || is_404() || is_home() ) {
 wp_enqueue_style('blog', get_theme_file_uri('/css/sections/blog.css'));
 }
 

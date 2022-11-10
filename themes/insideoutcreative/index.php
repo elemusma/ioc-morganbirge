@@ -25,20 +25,22 @@ if ( have_posts() ) :
     
     while ( have_posts() ) : the_post();
 
-echo '<div class="col-md-6 pr-lg-5 col-blog text-white" style="margin-bottom: 50px;">';
+echo '<div class="col-md-6 pr-lg-5 col-blog" style="margin-bottom: 50px;">';
 
     
-    echo '<div class="w-100 h-100 d-flex align-items-end justify-content-center blog-content position-relative overflow-h">';
-    the_post_thumbnail('full',array('class'=>'position-absolute w-100 h-100'));
+    echo '<div class="w-100 h-100 d-flex align-items-end justify-content-center blog-content position-relative overflow-h bg-white box-shadow" style="">';
+    // the_post_thumbnail('full',array('class'=>'position-absolute w-100 h-100'));
 echo '<div>';
 
-  echo '<div class="overlay position-absolute"></div>';
-  echo '<div class="position-relative z-1" style="padding: 150px 25px 50px;">';
+  // echo '<div class="overlay position-absolute"></div>';
+  echo '<div class="position-relative z-1" style="padding: 50px 25px 50px;">';
   echo '<a href="' . get_the_permalink() . '">';
   echo '<h3 class="h4">' . get_the_title() . '</h3>';
 echo '</a>';
 
-  echo '<hr class="border-white">';
+echo get_the_excerpt();
+
+  // echo '<hr class="">';
 
 
   echo '<p class="">' . get_the_tags('Tags: ') . '</p>';
@@ -94,6 +96,10 @@ endif;
 echo '</div>';
 echo '</div>';
 echo '</section>';
+
+// if(get_field('show_contact_section') == 'Yes'){
+  echo get_template_part('partials/section-contact');
+// }
 
 get_footer(); 
 ?>
