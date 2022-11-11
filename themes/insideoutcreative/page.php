@@ -2,6 +2,7 @@
 global $post; 
 if ( ! post_password_required( $post ) ) {
 
+if(!is_page(60)):
 //  start of header
 echo '<section class="bg-attachment" style="background:url(' . get_the_post_thumbnail_url() . ');background-size:cover;background-attachment:fixed;padding-top:300px;padding-bottom:100px;">';
 
@@ -32,6 +33,7 @@ echo '</div>';
 
 echo '</section>';
 //  end of header
+endif;
 
 if(get_the_content()){
 
