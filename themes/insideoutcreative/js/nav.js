@@ -7,6 +7,12 @@ let navMenuClose = document.querySelector('#navMenuClose');
 let header = document.querySelector('header');
 let blankSpace = document.querySelector('.blank-space');
 
+let searchIcon = document.querySelector('.search-icon');
+
+searchIcon.addEventListener('click', function () {
+    document.getElementById('s').focus();
+})
+
 window.addEventListener("scroll", parallaxEffect);
 
 function parallaxEffect() {

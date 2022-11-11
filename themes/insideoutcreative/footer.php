@@ -60,6 +60,17 @@ echo '</div>';
 
 echo '</footer>';
 
+echo '<div class="modal-content search-icon position-fixed w-100 h-100 z-3" style="opacity:0;">';
+echo '<div class="bg-overlay"></div>';
+echo '<div class="bg-content">';
+echo '<div class="bg-content-inner">';
+echo '<div class="close text-white" id="">X</div>              ';
+echo '<span class="h3 text-white">Search for:</span>';
+echo get_search_form();
+echo '</div>';
+echo '</div>';
+echo '</div>';
+
 }
 
 if(get_field('footer', 'options')) { the_field('footer', 'options'); } 

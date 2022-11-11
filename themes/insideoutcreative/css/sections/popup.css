@@ -40,3 +40,8 @@
   top: 25px;
   right: 25px;
 }
+
+.search-icon .bg-content {
+  background: transparent;
+  text-align: center;
+}
