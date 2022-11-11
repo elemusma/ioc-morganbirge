@@ -10,7 +10,7 @@ let blankSpace = document.querySelector('.blank-space');
 let searchIcon = document.querySelector('.search-icon');
 
 searchIcon.addEventListener('click', function () {
-    document.getElementById('s').focus();
+    document.querySelector('.search-icon #s').focus();
 })
 
 window.addEventListener("scroll", parallaxEffect);
