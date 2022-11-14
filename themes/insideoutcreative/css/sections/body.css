@@ -177,6 +177,13 @@ hr.text-white {
   display: none !important;
 }
 
+@media only screen and (max-width:767px) {
+  .section-hero {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+}
+
 @media screen and (max-width: 1199px) {
   .mobile-hidden {
     display: none;

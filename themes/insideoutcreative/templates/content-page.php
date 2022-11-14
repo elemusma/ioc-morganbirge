@@ -5,7 +5,7 @@
 get_header(); 
 
 //  start of header
-echo '<section class="bg-attachment" style="background:url(' . get_the_post_thumbnail_url() . ');background-size:cover;background-attachment:fixed;padding-top:300px;padding-bottom:100px;">';
+echo '<section class="bg-attachment section-hero" style="background:url(' . get_the_post_thumbnail_url() . ');background-size:cover;background-attachment:fixed;padding-top:300px;padding-bottom:100px;">';
 
 
 echo '<div class="container-fluid">';
@@ -94,7 +94,7 @@ if($options == 'Testimonials'){
     if(have_rows('individual_testimonial')):
     echo '<div class="testimonial-carousel owl-carousel owl-theme">';
         while(have_rows('individual_testimonial')): the_row();
-        echo '<div class="individual-testimonial position-relative pl-md-5 pl-3 pr-md-5 pr-5">';
+        echo '<div class="individual-testimonial position-relative pl-5 pr-5">';
 
         echo '<div class="testimonial-content">';
         echo get_sub_field('content');
