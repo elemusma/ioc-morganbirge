@@ -50,7 +50,7 @@ echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'w-100 h-auto','sty
 echo '</a>';
 echo '</div>';
 
-echo '<div class="col-8">';
+echo '<div class="col-8 mobile-hidden">';
 
 
 wp_nav_menu(array(
@@ -88,7 +88,7 @@ echo '<a href="' . home_url() . '">';
 
 $logo = get_field('logo','options'); 
 if($logo){
-echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'w-100 h-auto','style'=>'max-width:250px;']);
+echo wp_get_attachment_image($logo['id'],'full',"",['class'=>'w-100 h-auto','style'=>'max-width:150px;']);
 }
 
 echo '</a>';

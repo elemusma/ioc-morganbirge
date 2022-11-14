@@ -95,7 +95,7 @@ function mouseOver() {
         // arrow.addEventListener('click',activeDropdownClicked);
     }
 };
-mouseOver();
+// mouseOver();
 
 function clickMobile() {
     for (i = 0; i < menuItemHasChildrenMobile.length; i++) {
@@ -148,7 +148,7 @@ function clickMobile() {
     }
 
 };
-clickMobile();
+// clickMobile();
 
 function activeDropdown() {
     subMenu = this.querySelector('.sub-menu');
