@@ -44,7 +44,9 @@ echo get_the_excerpt();
 
 
   echo '<p class="">' . get_the_tags('Tags: ') . '</p>';
-  echo '<a href="' . get_the_permalink() . '">Read More</a>';
+  echo '<div class="pt-3">';
+  echo '<a href="' . get_the_permalink() . '"><strong>Read More</strong></a>';
+  echo '</div>';
   echo '</div>';
 
 

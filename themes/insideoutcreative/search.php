@@ -18,16 +18,50 @@ if ( $the_query->have_posts() ) {
         while ( $the_query->have_posts() ) {
            $the_query->the_post();
 
-               echo '<div class="col-md-6">';
-               echo '<div class="row pb-5 align-items-center">';
-               echo '<div class="col-md-6 col-5">';
-               the_post_thumbnail('large',array('class'=>'w-100 h-auto img-hover','style'=>'mix-blend-mode:darken;'));
-               echo '</div>';
-               echo '<div class="col-md-6 col-7">';
-               echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
-               echo '</div>';
-               echo '</div>';
-               echo '</div>';
+           echo '<div class="col-md-6 pr-lg-5 col-blog" style="margin-bottom: 50px;">';
+
+    
+    echo '<div class="w-100 h-100 d-flex align-items-end justify-content-center blog-content position-relative overflow-h bg-white box-shadow" style="">';
+    // the_post_thumbnail('full',array('class'=>'position-absolute w-100 h-100'));
+echo '<div>';
+
+  // echo '<div class="overlay position-absolute"></div>';
+  echo '<div class="position-relative z-1" style="padding: 50px 25px 50px;">';
+  echo '<a href="' . get_the_permalink() . '">';
+  echo '<h3 class="h4">' . get_the_title() . '</h3>';
+echo '</a>';
+
+echo get_the_excerpt();
+
+  // echo '<hr class="">';
+
+
+//   echo '<p class="">' . get_the_tags('Tags: ') . '</p>';
+echo '<div class="pt-3">';
+  echo '<a href="' . get_the_permalink() . '"><strong>Read More</strong></a>';
+  echo '</div>';
+  echo '</div>';
+
+
+
+  echo '</div>';
+
+
+  echo '</div>';
+
+
+  echo '</div>';
+
+            //    echo '<div class="col-md-6">';
+            //    echo '<div class="row pb-5 align-items-center">';
+            //    echo '<div class="col-md-6 col-5">';
+            //    the_post_thumbnail('large',array('class'=>'w-100 h-auto img-hover','style'=>'mix-blend-mode:darken;'));
+            //    echo '</div>';
+            //    echo '<div class="col-md-6 col-7">';
+            //    echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
+            //    echo '</div>';
+            //    echo '</div>';
+            //    echo '</div>';
 
                // <li>
                //     <a href="the_permalink(); ">the_title();</a>
